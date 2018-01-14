@@ -1,0 +1,29 @@
+<div class="container color-dark">
+  <div class="col">
+    <p>
+      Your favourite dish items
+    </p>
+  </div>
+  <div class="col">
+    <p>
+      Add your favourite dish ({{length}})
+    </p>
+  </div>
+</div>
+<div class="container color-light" [@array]="array.length">
+  <div class="col">
+    <p class="sm">
+      What do you want to make?
+    </p>
+    <form>
+      <input type="text" class="txt" name="item" placeholder="Cooking goal..." [(ngModel)]="items">
+      <input type="button" class="btn" value="Add Item" (click)="addItem()">
+      <span>{{items}}</span>
+    </form>
+  </div>
+  <div class="col">
+    <p class="life-container" *ngFor="let item of array;let i = index " (click)="removeItem(i)">
+      {{item}}
+    </p>
+  </div>
+</div>
