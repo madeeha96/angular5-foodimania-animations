@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
-  selector: 'app-about',
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.sass']
+  selector: "app-about",
+  templateUrl: "./about.component.html",
+  styleUrls: ["./about.component.sass"]
 })
 export class AboutComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.params.subscribe(res => {
+      console.log(res.id);
+    });
   }
 
+  ngOnInit() {}
 }
