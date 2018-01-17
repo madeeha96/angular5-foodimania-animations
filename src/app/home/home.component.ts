@@ -8,6 +8,7 @@ import {
   query,
   stagger
 } from "@angular/animations";
+import { DataService } from "../data.service";
 
 @Component({
   selector: "app-home",
@@ -60,18 +61,23 @@ import {
 })
 export class HomeComponent implements OnInit {
   items = "";
-  array = ["Biryani", "Butter Chicken", "Handi"];
+  array = [];
   length: number;
-  constructor() {}
+  constructor(private _data: DataService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._data.lists.subscribe(res => this.array = res);
+    this._data.changeList(this.array);
+  }
 
   addItem() {
     const list = this.array.push(this.items);
     this.length = this.array.length;
+    this._data.changeList(this.array);
   }
 
   removeItem(i) {
     this.array.splice(i, 1);
+    this._data.changeList(this.array);
   }
 }
